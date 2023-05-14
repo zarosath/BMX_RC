@@ -17,7 +17,7 @@ RotateEntity light,90,0,0
 
 
 While Not KeyDown( KEY_ESCAPE )
-camera()
+'cameraUpdate()
 
 
 RenderWorld
