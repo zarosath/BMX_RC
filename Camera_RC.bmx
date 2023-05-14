@@ -20,8 +20,7 @@ Local cameraHeight:Float
 Local camera:Tcamera=Createcamera()
 'cameraera
 PositionEntity camera,130,1,-130
-
-
+'Function cam()
 		' Ugly hack To allow repetion of camera positioning If camera ends up too close To the player (see below)
 		'Repeated = False
 		'#cameraRepeat
@@ -57,9 +56,16 @@ PositionEntity camera,130,1,-130
 		If Result Then MoveEntity(camera, 0.0, 0.0, 0.1)
 		' Flip camera 180 degrees If pushed too close To the player by a wall (prevents flickering)
 		PositionEntity(playerpivot, DesiredX, DesiredY, DesiredZ)
-		If EntityDistance#(playerpivot, head) < 2.0 'And Repeated = False
+		If EntityDistance#(playerpivot, Player) < 2.0 'And Repeated = False
 			cameraYaw = cameraYaw + 180.0
 			'Repeated = True
 			'Goto cameraRepeat
-			Return
 		EndIf
+		
+					CameraYaw = CameraYaw- Float(MouseXSpeed()) * Delta
+			If CameraYaw# < -180.0
+				CameraYaw = CameraYaw + 360.0
+			ElseIf CameraYaw# > 180.0
+				CameraYaw = CameraYaw - 360.0
+			EndIf
+'End Function
